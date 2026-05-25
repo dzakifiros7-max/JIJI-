@@ -1,0 +1,44 @@
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surat ❤️</title>
+<style>
+body{font-family:Arial;background:#fff;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}
+.box{padding:20px;width:90%;max-width:400px;text-align:center}
+button{padding:10px 20px;border:none;border-radius:10px;background:#ff6b81;color:white}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>HEH BOCIL😁 </h2>
+<p id="text"></p>
+<button onclick="next()">Lanjut 🎁</button>
+</div>
+
+<script>
+if(localStorage.getItem('login')!=='true'){
+  window.location.href='index.html';
+}
+
+let t="cie tua 🤭\n\neh tapi selamat ulangtahun yaa🥳.\nmaafkanlah hamba yang cemburuan dan sering minta pap ini.😔\n\nI love you💖\n\nBTW kalau ini udah jiji liat berarti\n\n I MADE A PROMISE TO LOVE YOU FOR THE REST OF MY TIME 🐃";
+let i=0;
+function type(){
+ if(i<t.length){
+  document.getElementById('text').innerHTML+=t[i]=='\n'?'<br>':t[i];
+  i++;
+  setTimeout(type,40);
+ }
+}
+
+type();
+
+function next(){
+ window.location.href='video.html';
+}
+</script>
+</body>
+</html>

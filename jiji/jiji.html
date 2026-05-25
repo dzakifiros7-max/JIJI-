@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SELAMAT ULANG TAHUN!! 🎉</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family: Arial, sans-serif;
+  min-height:100vh;
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  padding:20px;
+  position:relative;
+}
+
+/* HIASAN */
+.decor{
+  position:absolute;
+  font-size:35px;
+  animation: float 5s infinite ease-in-out;
+  opacity:0.85;
+}
+
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+  100%{transform:translateY(0);}
+}
+
+.d1{top:5%;left:8%;}
+.d2{top:15%;right:10%;}
+.d3{bottom:10%;left:12%;}
+.d4{bottom:15%;right:15%;}
+.d5{top:45%;left:3%;}
+.d6{top:55%;right:5%;}
+
+/* BOX */
+.box{
+  background: rgba(255,255,255,0.95);
+  width:90%;
+  max-width:380px;
+  padding:25px;
+  border-radius:25px;
+  text-align:center;
+  box-shadow:0 15px 35px rgba(0,0,0,0.2);
+  position:relative;
+  z-index:2;
+  animation: popup 0.7s ease;
+}
+
+@keyframes popup{
+  from{
+    transform:scale(0.8);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+h1{
+  color:#ff4f81;
+  margin-bottom:15px;
+  font-size:28px;
+}
+
+p{
+  color:#555;
+  margin-bottom:20px;
+  font-size:16px;
+}
+
+/* INPUT */
+input{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:15px;
+  margin-bottom:12px;
+  background:#f3f3f3;
+  font-size:16px;
+}
+
+/* BUTTON */
+button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border:none;
+  border-radius:15px;
+  background:#ff4f81;
+  color:white;
+  font-size:17px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.03);
+  background:#ff2e6a;
+}
+
+/* QUIZ */
+#intro,
+#quiz{
+  display:none;
+}
+
+.progress{
+  color:gray;
+  margin-bottom:15px;
+  font-size:14px;
+}
+
+.choice{
+  background:#ff85a2;
+}
+
+.choice:hover{
+  background:#ff5c8a;
+}
+
+#msg{
+  margin-top:15px;
+  color:#ff2e6a;
+  font-weight:bold;
+}
+
+#error{
+  color:red;
+  margin-top:10px;
+}
+
+/* RESPONSIVE */
+@media(max-width:480px){
+  h1{
+    font-size:24px;
+  }
+
+  button{
+    font-size:16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HIASAN -->
+<div class="decor d1">🎈</div>
+<div class="decor d2">🎂</div>
+<div class="decor d3">🍭</div>
+<div class="decor d4">🧁</div>
+<div class="decor d5">🎁</div>
+<div class="decor d6">🍬</div>
+
+<!-- LOGIN -->
+<div class="box" id="loginBox">
+  <h1>🎉 Happy birthday 🎉</h1>
+
+  <p>
+    Bagi pap biar tau password nya 😈
+  </p>
+
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+
+  <button onclick="login()">Mulaii</button>
+
+  <p id="error"></p>
+</div>
+
+<!-- INTRO -->
+<div class="box" id="intro">
+  <h1>🎉 helo!! 🎉</h1>
+
+  <p>
+    Pertama...<br>
+    ayok main tebak tebakan😁
+  </p>
+
+  <button onclick="mulaiQuiz()">ayoo</button>
+</div>
+
+<!-- QUIZ -->
+<div class="box" id="quiz">
+  <div class="progress" id="progress"></div>
+
+  <h1 id="question">Loading...</h1>
+
+  <div id="choices"></div>
+
+  <p id="msg"></p>
+</div>
+
+<script>
+
+// LOGIN
+function login(){
+
+  let user = document.getElementById('username').value;
+  let pass = document.getElementById('password').value;
+
+  // GANTI SESUAI MAU KAMU
+  if(user === 'jiji' && pass === 'gigalith'){
+
+    localStorage.setItem('login','true');
+
+    document.getElementById('loginBox').style.display='none';
+    document.getElementById('intro').style.display='block';
+
+  }else{
+
+    document.getElementById('error').innerText =
+      'Username atau password salah 😜';
+
+  }
+}
+
+// DATA QUIZ
+let data = [
+  {
+    q:'siapa yang lagi ulang tahunn🥳',
+    options:['jiji','meng','sumbul'],
+    answer:0
+  },
+  {
+    q:'jiji ituu...?🤔',
+    options:['bad girl','cantik imut pinter gemes 100% my type','biasa aja'],
+    answer:1
+  },
+  {
+    q:'w punya kuasa di web ini muhehehehe😁',
+    options:['boong','iyaa','meng jahat'],
+    answer:1
+  },
+  {
+    q:'apa sumber tenaga terbesar umat manusia?🤨',
+    options:['batu-bara','sawit','JAJAN!!!'],
+    answer:2
+  },
+  {
+    q:'tipe cewek yang paling w suka ituuu...',
+    options:['jiji','jiji','jiji'],
+    allCorrect:true
+  },
+  {
+    q:'dengan ini saya sepakat menyatakan bahwa semua hal barusan adalah benar100%',
+    options:['sepakat','engak','mana aci macam ni'],
+    answer:0
+  }
+];
+
+let i = 0;
+
+// MULAI QUIZ
+function mulaiQuiz(){
+  document.getElementById('intro').style.display='none';
+  document.getElementById('quiz').style.display='block';
+
+  load();
+}
+
+// LOAD SOAL
+function load(){
+
+  let q = data[i];
+
+  document.getElementById('question').innerText = q.q;
+
+  document.getElementById('progress').innerText =
+  `Pertanyaan ${i+1} dari ${data.length}`;
+
+  let html = '';
+
+  q.options.forEach((opt,index)=>{
+
+    html += `
+      <button class="choice"
+      onclick="pilih(${index})">
+
+      ${String.fromCharCode(65+index)}. ${opt}
+
+      </button>
+    `;
+
+  });
+
+  document.getElementById('choices').innerHTML = html;
+
+  document.getElementById('msg').innerText = '';
+}
+
+// PILIH
+function pilih(index){
+
+  let current = data[i];
+
+  // SOAL SEMUA BENAR
+  if(current.allCorrect){
+
+    document.getElementById('msg').innerText =
+    'Pokoknya jiji😌';
+
+  }
+
+  // SOAL NORMAL
+  else if(index !== current.answer){
+
+    document.getElementById('msg').innerText =
+    'Tetoot❌';
+
+    return;
+  }
+
+  setTimeout(()=>{
+
+    i++;
+
+    if(i < data.length){
+
+      load();
+
+    }else{
+
+      window.location.href='surat.html';
+
+    }
+
+  },800);
+}
+
+</script>
+
+</body>
+</html>
